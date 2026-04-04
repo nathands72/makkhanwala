@@ -1,0 +1,188 @@
+@import "tailwindcss";
+
+/* ── Makkanwala Design System ── */
+
+:root {
+  --butter-50: #FFFDF5;
+  --butter-100: #FFF9E0;
+  --butter-200: #FFF3C4;
+  --butter-300: #FFEB99;
+  --butter-400: #F9D976;
+  --butter-500: #F0C040;
+  --butter-600: #D4A020;
+  --butter-700: #A07818;
+  --butter-800: #6B5010;
+  --butter-900: #3D2E08;
+
+  --cream-50: #FEFDFB;
+  --cream-100: #FCF8F0;
+
+  --dark-900: #0F0F0F;
+  --dark-800: #1A1A1A;
+  --dark-700: #2D2D2D;
+  --dark-600: #404040;
+
+  --success: #22C55E;
+  --warning: #F59E0B;
+  --error: #EF4444;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--cream-50);
+  color: var(--dark-900);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--butter-400); border-radius: 3px; }
+
+/* ── Skeleton Loader Animation ── */
+@keyframes shimmer {
+  0% { background-position: -200px 0; }
+  100% { background-position: calc(200px + 100%) 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+/* ── Glass Card ── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(249, 217, 118, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  box-shadow: 0 8px 40px rgba(249, 217, 118, 0.15);
+  transform: translateY(-2px);
+}
+
+/* ── Buttons ── */
+.btn-primary {
+  background: linear-gradient(135deg, var(--butter-400), var(--butter-500));
+  color: var(--dark-900);
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(249, 217, 118, 0.3);
+  font-size: 0.95rem;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--butter-500), var(--butter-600));
+  box-shadow: 0 4px 16px rgba(249, 217, 118, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--dark-900);
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 12px;
+  border: 2px solid var(--butter-300);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.btn-secondary:hover {
+  background: var(--butter-50);
+  border-color: var(--butter-400);
+}
+
+/* ── Input fields ── */
+.input-field {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #E5E7EB;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: var(--font-sans);
+  transition: all 0.2s ease;
+  background: white;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--butter-400);
+  box-shadow: 0 0 0 3px rgba(249, 217, 118, 0.2);
+}
+
+/* ── Badge ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.badge-success { background: #DEF7EC; color: #03543F; }
+.badge-warning { background: #FDF6B2; color: #723B13; }
+.badge-error { background: #FDE8E8; color: #9B1C1C; }
+.badge-info { background: #E1EFFE; color: #1E40AF; }
+
+/* ── Page Container ── */
+.page-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+/* ── Fadeup animation ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeup {
+  animation: fadeUp 0.5s ease-out forwards;
+}
+
+.animate-fadeup-delay-1 { animation-delay: 0.1s; opacity: 0; }
+.animate-fadeup-delay-2 { animation-delay: 0.2s; opacity: 0; }
+.animate-fadeup-delay-3 { animation-delay: 0.3s; opacity: 0; }

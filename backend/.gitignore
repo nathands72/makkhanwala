@@ -1,0 +1,11 @@
+# .gitignore for backend
+__pycache__/
+*.pyc
+*.pyo
+.env
+*.db
+.venv/
+venv/
+dist/
+*.egg-info/
+.pytest_cache/
