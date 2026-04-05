@@ -14,7 +14,7 @@ class Cart(Base, UUIDMixin, TimestampMixin):
 
     # Relationships
     user = relationship("User", back_populates="cart")
-    items = relationship("CartItem", back_populates="cart", cascade="all, delete-orphan", lazy="selectin")
+    items = relationship("CartItem", back_populates="cart", cascade="all, delete-orphan", lazy="selectin", order_by="CartItem.created_at")
 
     @property
     def total(self) -> float:
