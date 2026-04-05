@@ -4,6 +4,12 @@ import axios from 'axios';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
+/** Resolves a relative image path (e.g. /static/products/xyz.jpg) to a full URL */
+export const getImageUrl = (path: string | null | undefined): string | null => {
+    if (!path) return null;
+    return `${API_URL}${path}`;
+};
+
 const api = axios.create({
     baseURL: API_URL,
     headers: { 'Content-Type': 'application/json' },

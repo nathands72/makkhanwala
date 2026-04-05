@@ -2,8 +2,10 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { FiTrash2, FiMinus, FiPlus, FiShoppingBag, FiArrowRight } from 'react-icons/fi';
 import toast from 'react-hot-toast';
+import { getImageUrl } from '@/lib/api';
 import { useCartStore } from '@/lib/store/cart-store';
 import { useAuthStore } from '@/lib/store/auth-store';
 import { useRouter } from 'next/navigation';
@@ -61,7 +63,22 @@ export default function CartPage() {
                                 width: 80, height: 80, borderRadius: 12, flexShrink: 0,
                                 background: 'linear-gradient(135deg, #FFF9E0, #FFF3C4)',
                                 display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 36,
-                            }}>🧈</div>
+                                overflow: 'hidden', position: 'relative'
+                            }}>
+                                {item.product_image ? (
+                                    <Image
+                                        src={getImageUrl(item.product_image)!}
+                                        alt={item.product_name}
+                                        fill
+                                        unoptimized
+                                        style={{ objectFit: 'cover' }}
+                                        sizes="80px"
+                                        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                                    />
+                                ) : (
+                                    <span>🧈</span>
+                                )}
+                            </div>
 
                             {/* Details */}
                             <div style={{ flex: 1 }}>

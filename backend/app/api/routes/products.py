@@ -1,7 +1,7 @@
 """Product routes."""
 
 from typing import Optional
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends, File, Query, UploadFile
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.session import get_db
@@ -66,3 +66,15 @@ async def delete_product(
     service = ProductService(db)
     await service.delete_product(product_id)
     return MessageResponse(message="Product deleted successfully")
+
+
+@router.post("/api/admin/products/{product_id}/image", response_model=ProductResponse)
+async def upload_product_image(
+    product_id: str,
+    file: UploadFile = File(...),
+    db: AsyncSession = Depends(get_db),
+    _admin=Depends(require_admin),
+):
+    """Upload or replace a product's image (multipart/form-data, field name: 'file')."""
+    service = ProductService(db)
+    return await service.upload_product_image(product_id, file)
